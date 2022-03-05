@@ -21,7 +21,7 @@ variable "subnet_cidrs" {
   description = "Subnet addresses for each subnet to be created"
 
   validation {
-    condition     =  length(var.subnet_cidrs) > 0
+    condition     = length(var.subnet_cidrs) > 0
     error_message = "Please provide at least one availability zone."
   }
 

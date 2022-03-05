@@ -1,12 +1,12 @@
-output "created_subnets" {
-  depends_on = [
-    data.aws_subnet_ids.allsubnets,
-    aws_subnet.subnets
+output "public_web_urls" {
+  # value       = ["http://${aws_instance.linuxvm.*.public_dns}"]
+  value = [
+    for pub_dns in aws_instance.linuxvm.*.public_dns: "http://${pub_dns}"
   ]
-  description = "Subnet IDs"
-  value       = tolist(data.aws_subnet_ids.allsubnets.ids)[2 - 1]
+  description = "Public DNS Names of the EC2 Instances built."
 }
 
-output "linuxvms" {
-  value = aws_instance.linuxvm
+output "private_keypair" {
+  value       = "${local.private_key_filename}.pem"
+  description = "Keypair name."
 }

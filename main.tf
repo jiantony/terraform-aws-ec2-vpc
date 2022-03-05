@@ -87,12 +87,22 @@ data "aws_subnet_ids" "allsubnets" {
 
 }
 
+data "aws_subnets" "allsubnets" {
+  filter {
+    name   = "vpc-id"
+    values = [aws_vpc.vpc01.id]
+  }
+}
+
+
 resource "aws_route_table_association" "subnetroutes" {
   # for_each = data.aws_subnet_ids.allsubnets.ids
   count = length(var.subnet_cidrs)
 
-  subnet_id      = tolist(data.aws_subnet_ids.allsubnets.ids)[count.index]
+  subnet_id = tolist(data.aws_subnet_ids.allsubnets.ids)[count.index]
+
   route_table_id = aws_route_table.rt01.id
+
 }
 
 data "aws_ami" "centos7" {
@@ -121,7 +131,7 @@ resource "local_file" "aws_cloud_pem" {
 }
 
 locals {
-  private_key_filename = "${var.dept}-ssh-key.pem"
+  private_key_filename = "${var.dept}-ssh-key"
 }
 
 resource "aws_key_pair" "keypair" {
@@ -139,18 +149,19 @@ resource "aws_instance" "linuxvm" {
   instance_type               = var.instance_type
   associate_public_ip_address = true
   subnet_id                   = tolist(data.aws_subnet_ids.allsubnets.ids)[count.index]
-  vpc_security_group_ids      = [aws_security_group.lxwebservers.id]
-  key_name                    = aws_key_pair.keypair.key_name
+
+  vpc_security_group_ids = [aws_security_group.lxwebservers.id]
+  key_name               = aws_key_pair.keypair.key_name
 
   tags = {
     Name = "${var.dept}-instance-${count.index}"
   }
 
   user_data = <<EOF
-  #!/bin/bash
-  yum install -y httpd
-  systemctl start httpd.service
-  echo -e "<!DOCTYPE html>
+#!/bin/bash
+yum install -y httpd
+systemctl start httpd.service
+echo -e "<!DOCTYPE html>
 <html lang="en">
 
 <head>
