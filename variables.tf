@@ -41,13 +41,9 @@ variable "availability_zones" {
 
 variable "dept" {
   type        = string
-  default     = "TBSTools"
+  default     = ""
   description = "Department that owns the resource"
 
-  validation {
-    condition     = length(var.dept) > 3
-    error_message = "Department name must be at least 3 character long."
-  }
 }
 
 variable "owner" {
