@@ -41,7 +41,7 @@ variable "availability_zones" {
 
 variable "dept" {
   type        = string
-  default     = "Automathon"
+  default     = "TBSTools"
   description = "Department that owns the resource"
 
   validation {

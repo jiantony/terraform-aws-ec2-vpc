@@ -10,3 +10,8 @@ output "private_keypair" {
   value       = "${local.private_key_filename}.pem"
   description = "Keypair name."
 }
+
+# output "ec2_instances" {
+#   value = aws_instance.linuxvm
+#   description = "EC2 Instances created."
+# }
