@@ -44,3 +44,12 @@ module "ec2-vpc" {
 No modules.
 
 ## Inputs
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+|aws_region|Specify the AWS Region|string|us-east-1|no|
+|vpc_cidr|CIDR for the new VPC|string|10.10.0.0/16|no|
+|subnet_cidrs|CIDRs for the subnets|list(string)|"[""10.10.1.0/24""| ""10.10.2.0/24""| ""10.10.3.0/24""]"|no|
+|availability_zones|Availability zones where the EC2 instances to be built|list(string)|"[""10.10.1.0/24""| ""10.10.2.0/24""| ""10.10.3.0/24""]"|no|
+|dept|Department name to be used for Name tag|string|TEST|no|
+|sg_whitelist|Address ranges to whitelist for server access|list(string)|"[""0.0.0.0/0""]"|no|
+|instance_type|Type of EC2 instance to be built|string|t2.micro|no|
