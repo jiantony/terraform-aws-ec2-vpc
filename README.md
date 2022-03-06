@@ -53,3 +53,16 @@ No modules.
 |dept|Department name to be used for Name tag|string|TEST|no|
 |sg_whitelist|Address ranges to whitelist for server access|list(string)|["0.0.0.0/0""]|no|
 |instance_type|Type of EC2 instance to be built|string|t2.micro|no|
+
+## Outputs
+
+|  Name                 | Description                |
+|-----------------------|----------------------------|
+| public_web_urls       | Public DNS Names of the EC2 Instances built |
+| private_keypair       | Keypair name  |
+
+## Authors
+Module is built and maintained by [Jibin Antony] for Telstra Automathon (mailto: jibinantony@gmail.com)
+
+## License
+Apache 2 Licensed
