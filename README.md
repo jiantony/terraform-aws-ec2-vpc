@@ -62,7 +62,7 @@ No modules.
 | private_keypair       | Keypair name  |
 
 ## Authors
-Module is built and maintained by [Jibin Antony] for Telstra Automathon (<a name="mailto:jibinantony@gmail.com">jibinantony@gmail.com</a>)
+Module is built and maintained by <a name="mailto:jibinantony@gmail.com">jibinantony@gmail.com</a> for Telstra Automathon
 
 ## License
 Apache 2 Licensed
