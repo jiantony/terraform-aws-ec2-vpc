@@ -41,7 +41,7 @@ variable "availability_zones" {
 
 variable "dept" {
   type        = string
-  default     = ""
+  default     = "TEST"
   description = "Department that owns the resource"
 
 }
